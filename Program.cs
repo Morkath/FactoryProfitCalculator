@@ -689,7 +689,7 @@ namespace FactoryProfitCalculator
         {
             try
             {
-                MessageBox.Show("This tool was created by Morkath, it is used to calcuate the factory production rates for a Battletech Campaign game.  Version: " + str_versionNum, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("This tool was coded by Morkath.  It was designed by Sprero to calcuate the factory production rates for a Battletech Campaign game.  Version: " + str_versionNum, "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
