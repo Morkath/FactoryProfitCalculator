@@ -1231,7 +1231,11 @@ namespace FactoryProfitCalculator
                 }
 
                 // Factory Tech Level Multipliers
-                if (mainForm.FactoryType > mainForm.TechLevel)
+                if (mainForm.FactoryType == 1 && mainForm.TechLevel == 0)
+                {
+                    productionRate *= atFactoryTechMulti;
+                }
+                else if (mainForm.FactoryType > mainForm.TechLevel)
                 {
                     productionRate *= belowFactoryTechMulti;
                 }
