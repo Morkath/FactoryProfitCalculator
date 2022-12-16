@@ -6,6 +6,9 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <PackageProjectUrl>https://github.com/Morkath/FactoryProfitCalculator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Morkath/FactoryProfitCalculator</RepositoryUrl>
+    <Title>FactoryProfitCalculator</Title>
   </PropertyGroup>
 
 </Project>
