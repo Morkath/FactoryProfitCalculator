@@ -745,7 +745,7 @@ namespace FactoryProfitCalculator
                 if (mainForm.TechLevel >= 0)
                 {
                     techMulti = techMultipliers[mainForm.TechLevel];
-                    mainForm.TechMulti = techMulti.ToString();
+                    mainForm.TechMulti = Math.Round(techMulti, 3).ToString();
                 }
             }
             catch (Exception ex)
@@ -760,7 +760,7 @@ namespace FactoryProfitCalculator
                 if (Convert.ToInt32(mainForm.Cost) >= 0)
                 {
                     unitCostCount = Convert.ToInt32(mainForm.Cost);
-                }
+                 }
             }
             catch (Exception ex)
             {
@@ -833,8 +833,8 @@ namespace FactoryProfitCalculator
                         mainForm.HandMakeCost = "0";
                     }
 
-                    mainForm.ChassisCost = baseChassisCost.ToString();
-                    mainForm.ModChassisCost = modifiedChassisCost.ToString();
+                    mainForm.ChassisCost = Math.Round(baseChassisCost, 3).ToString();
+                    mainForm.ModChassisCost = Math.Round(modifiedChassisCost, 3).ToString();
                 }
             }
             catch (Exception ex)
@@ -1014,7 +1014,7 @@ namespace FactoryProfitCalculator
 
                 costMulti = 100 - (50 * ((b * bFactoryOutput) + (c * cFactoryOutput)) / requiredTonnage);
 
-                mainForm.CostMultiplier = costMulti.ToString();
+                mainForm.CostMultiplier = Math.Round(costMulti, 3).ToString();
             }
             catch (Exception ex)
             {
@@ -1032,7 +1032,7 @@ namespace FactoryProfitCalculator
                     modifiedChassisCost += handMakeCost;
                 }
                 
-                mainForm.ModChassisCost = modifiedChassisCost.ToString();
+                mainForm.ModChassisCost = Math.Round(modifiedChassisCost, 3).ToString();
             }
             catch (Exception ex)
             {
@@ -1049,7 +1049,7 @@ namespace FactoryProfitCalculator
                     if (mainForm.RefitTechLevel >= 0)
                     {
                         refitTechMulti = techMultipliers[mainForm.RefitTechLevel];
-                        mainForm.RefitTechMulti = refitTechMulti.ToString();
+                        mainForm.RefitTechMulti = Math.Round(refitTechMulti, 3).ToString();
                     }
                 }
                 else
@@ -1092,7 +1092,7 @@ namespace FactoryProfitCalculator
             {
                 // Refit Cost = Tonnage * Refit Tech Multi * Refit Type Multi
                 refitCost = tonnage * refitTechMulti * refitTypeMulti;
-                mainForm.RefitCost = refitCost.ToString();
+                mainForm.RefitCost = Math.Round(refitCost, 3).ToString();
             }
             catch (Exception ex)
             {
@@ -1104,7 +1104,7 @@ namespace FactoryProfitCalculator
             try
             {
                 totalCost = modifiedChassisCost + refitCost;
-                mainForm.TotalCost = totalCost.ToString();
+                mainForm.TotalCost = Math.Round(totalCost, 3).ToString();
             }
             catch (Exception ex)
             {
@@ -1115,8 +1115,6 @@ namespace FactoryProfitCalculator
         {
             try
             {
-                //factoryTechLevel = techLevels[mainForm.FactoryType];
-                //techLevel = techLevels[mainForm.TechLevel];
                 omni = mainForm.Omni;
 
                 int smallCraftMaxB = 0;
@@ -1297,7 +1295,7 @@ namespace FactoryProfitCalculator
             try
             {
                 monthlyExpenses = totalCost * productionRate;
-                mainForm.MonthlyCost = monthlyExpenses.ToString();
+                mainForm.MonthlyCost = Math.Round(monthlyExpenses, 3).ToString();
             }
             catch (Exception ex)
             {
@@ -1311,7 +1309,7 @@ namespace FactoryProfitCalculator
                 if (mainForm.SellTechLevel >= 0)
                 {
                     sellTechMulti = techMultipliers[mainForm.SellTechLevel];
-                    mainForm.SellTechMulti = sellTechMulti.ToString();
+                    mainForm.SellTechMulti = Math.Round(sellTechMulti, 3).ToString();
                 }
             }
             catch (Exception ex)
@@ -1348,7 +1346,7 @@ namespace FactoryProfitCalculator
                     monthlySell = productionRate * totalCost;
                 }
 
-                mainForm.MonthlySell = monthlySell.ToString();
+                mainForm.MonthlySell = Math.Round(monthlySell, 3).ToString();
             }
             catch (Exception ex)
             {
@@ -1360,7 +1358,7 @@ namespace FactoryProfitCalculator
             try
             {
                 monthlyProfit = monthlySell - monthlyExpenses;
-                mainForm.MonthlyProfit = monthlyProfit.ToString();
+                mainForm.MonthlyProfit = Math.Round(monthlyProfit, 3).ToString();
             }
             catch (Exception ex)
             {
