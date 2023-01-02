@@ -1,5 +1,6 @@
 using System.Drawing.Text;
 using System.IO;
+using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace FactoryProfitCalculator
@@ -630,25 +631,40 @@ namespace FactoryProfitCalculator
             try
             {
                 string fileName = mainForm.Variant;
+                string fullFileName = str_saveFileFolder + "\\" + fileName + ".txt";
+                DialogResult saveFile = DialogResult.Yes;
 
-                using (StreamWriter wt = new(str_saveFileFolder + "\\" + fileName + ".txt"))
+                if (File.Exists(fullFileName))
                 {
-                    wt.WriteLine(mainForm.Variant);
-                    wt.WriteLine(mainForm.Tonnage);
-                    wt.WriteLine(mainForm.UnitType);
-                    wt.WriteLine(mainForm.FactoryType);
-                    wt.WriteLine(mainForm.Cost);
-                    wt.WriteLine(mainForm.TechLevel);
-                    wt.WriteLine(mainForm.HandMake);
-                    wt.WriteLine(mainForm.BFactory);
-                    wt.WriteLine(mainForm.CFactory);
-                    wt.WriteLine(mainForm.Refit);
-                    wt.WriteLine(mainForm.RefitTechLevel);
-                    wt.WriteLine(mainForm.RefitType);
-                    wt.WriteLine(mainForm.Omni);
-                    wt.WriteLine(mainForm.SellTechLevel);
+                    saveFile = MessageBox.Show("File exists, Overwrite?", "File Exists", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                }
 
-                    wt.Close();
+                if (saveFile == DialogResult.Yes)
+                {
+                    using (StreamWriter wt = new(fullFileName))
+                    {
+                        wt.WriteLine(mainForm.Variant);
+                        wt.WriteLine(mainForm.Tonnage);
+                        wt.WriteLine(mainForm.UnitType);
+                        wt.WriteLine(mainForm.FactoryType);
+                        wt.WriteLine(mainForm.Cost);
+                        wt.WriteLine(mainForm.TechLevel);
+                        wt.WriteLine(mainForm.HandMake);
+                        wt.WriteLine(mainForm.BFactory);
+                        wt.WriteLine(mainForm.CFactory);
+                        wt.WriteLine(mainForm.Refit);
+                        wt.WriteLine(mainForm.RefitTechLevel);
+                        wt.WriteLine(mainForm.RefitType);
+                        wt.WriteLine(mainForm.Omni);
+                        wt.WriteLine(mainForm.SellTechLevel);
+
+                        wt.Close();
+                    }
+                }
+                else
+                {
+                    saveFile = DialogResult.No;
+                    MessageBox.Show("File not saved.", "File Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
