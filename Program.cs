@@ -62,6 +62,10 @@ namespace FactoryProfitCalculator
         public int expSmallCraftDrop_BFactoryMax = 0;
         public int expSmallCraftDrop_CFactoryMax = 0;
 
+        public int retroBattleArm_BFactoryMax = 0;
+        public int retroBattleArm_CFactoryMax = 0;
+        public int introBattleArm_BFactoryMax = 0;
+        public int introBattleArm_CFactoryMax = 0;
         public int stdBattleArm_BFactoryMax = 0;
         public int stdBattleArm_CFactoryMax = 0;
         public int advBattleArm_BFactoryMax = 0;
@@ -205,6 +209,10 @@ namespace FactoryProfitCalculator
         private const string str_expSCDropBFactMax = "Exp_SCDrop_BFactory_MinCost_Req: ";
         private const string str_expSCDropCFactMax = "Exp_SCDrop_CFactory_MinCost_Req: ";
 
+        private const string str_retroBABFactMax = "Retro_BA_BFactory_MinCost_Req: ";
+        private const string str_retroBACFactMax = "Retro_BA_CFactory_MinCost_Req: ";
+        private const string str_introBABFactMax = "Intro_BA_BFactory_MinCost_Req: ";
+        private const string str_introBACFactMax = "Intro_BA_CFactory_MinCost_Req: ";
         private const string str_stdBABFactMax = "Std_BA_BFactory_MinCost_Req: ";
         private const string str_stdBACFactMax = "Std_BA_CFactory_MinCost_Req: ";
         private const string str_advBABFactMax = "Adv_BA_BFactory_MinCost_Req: ";
@@ -352,6 +360,8 @@ namespace FactoryProfitCalculator
             myClass.omniFactoryBonusCFactory = 5;
 
             // Retrotech
+            myClass.retroBattleArm_BFactoryMax = 2;
+            myClass.retroBattleArm_CFactoryMax = 1;
             myClass.retroVee_BFactoryMax = 1;
             myClass.retroVee_CFactoryMax = 1;
             myClass.retroMechASF_BFactoryMax = 2;
@@ -360,6 +370,8 @@ namespace FactoryProfitCalculator
             myClass.retroSmallCraftDrop_CFactoryMax = 1;
 
             // Introtech
+            myClass.introBattleArm_BFactoryMax = 2;
+            myClass.introBattleArm_CFactoryMax = 1;
             myClass.introVee_BFactoryMax = 2;
             myClass.introVee_CFactoryMax = 1;
             myClass.introMechASF_BFactoryMax = 3;
@@ -474,6 +486,10 @@ namespace FactoryProfitCalculator
                     wt.WriteLine(str_expSCDropBFactMax + myClass.expSmallCraftDrop_BFactoryMax);
                     wt.WriteLine(str_expSCDropCFactMax + myClass.expSmallCraftDrop_CFactoryMax);
 
+                    wt.WriteLine(str_retroBABFactMax + myClass.retroBattleArm_BFactoryMax);
+                    wt.WriteLine(str_retroBACFactMax + myClass.retroBattleArm_CFactoryMax);
+                    wt.WriteLine(str_introBABFactMax + myClass.introBattleArm_BFactoryMax);
+                    wt.WriteLine(str_introBACFactMax + myClass.introBattleArm_CFactoryMax);
                     wt.WriteLine(str_stdBABFactMax + myClass.stdBattleArm_BFactoryMax);
                     wt.WriteLine(str_stdBACFactMax + myClass.stdBattleArm_CFactoryMax);
                     wt.WriteLine(str_advBABFactMax + myClass.advBattleArm_BFactoryMax);
@@ -589,6 +605,10 @@ namespace FactoryProfitCalculator
                     myClass.expSmallCraftDrop_BFactoryMax = Int32.Parse(rt.ReadLine()!.Remove(0, str_expSCDropBFactMax.Length));
                     myClass.expSmallCraftDrop_CFactoryMax = Int32.Parse(rt.ReadLine()!.Remove(0, str_expSCDropCFactMax.Length));
 
+                    myClass.retroBattleArm_BFactoryMax = Int32.Parse(rt.ReadLine()!.Remove(0, str_retroBABFactMax.Length));
+                    myClass.retroBattleArm_CFactoryMax = Int32.Parse(rt.ReadLine()!.Remove(0, str_retroBACFactMax.Length));
+                    myClass.introBattleArm_BFactoryMax = Int32.Parse(rt.ReadLine()!.Remove(0, str_introBABFactMax.Length));
+                    myClass.introBattleArm_CFactoryMax = Int32.Parse(rt.ReadLine()!.Remove(0, str_introBACFactMax.Length));
                     myClass.stdBattleArm_BFactoryMax = Int32.Parse(rt.ReadLine()!.Remove(0, str_stdBABFactMax.Length));
                     myClass.stdBattleArm_CFactoryMax = Int32.Parse(rt.ReadLine()!.Remove(0, str_stdBACFactMax.Length));
                     myClass.advBattleArm_BFactoryMax = Int32.Parse(rt.ReadLine()!.Remove(0, str_advBABFactMax.Length));
@@ -607,7 +627,6 @@ namespace FactoryProfitCalculator
 
         public void SaveFactoryFile()
         {
-            /* TRAPTODO Save out the useful factory info to reload later. */
             try
             {
                 string fileName = mainForm.Variant;
@@ -891,6 +910,11 @@ namespace FactoryProfitCalculator
                         bFactoryMax = retroSmallCraftDrop_BFactoryMax;
                         cFactoryMax = retroSmallCraftDrop_CFactoryMax;
                     }
+                    else if (unitType == str_baUnitType)
+                    {
+                        bFactoryMax = retroBattleArm_BFactoryMax;
+                        cFactoryMax = retroBattleArm_CFactoryMax;
+                    }
                 }
                 else if (techLevel == techLevels[2])
                 {
@@ -908,6 +932,11 @@ namespace FactoryProfitCalculator
                     {
                         bFactoryMax = introSmallCraftDrop_BFactoryMax;
                         cFactoryMax = introSmallCraftDrop_CFactoryMax;
+                    }
+                    else if (unitType == str_baUnitType)
+                    {
+                        bFactoryMax = introBattleArm_BFactoryMax;
+                        cFactoryMax = introBattleArm_CFactoryMax;
                     }
                 }
                 else if (techLevel == techLevels[3])
