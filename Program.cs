@@ -221,7 +221,7 @@ namespace FactoryProfitCalculator
         private const string str_minorRefitType = "Minor";
         private const string str_refitRefitType = "Refit";
         private const string str_rebuildRefitType = "Rebuild";
-        private const string str_primTechLvl = "Primitive";
+        private const string str_primTechLvl = "Civilian";
         private const string str_retroTechLvl = "Retro";
         private const string str_introTechLvl = "Intro";
         private const string str_stdTechLvl = "Standard";
@@ -740,6 +740,8 @@ namespace FactoryProfitCalculator
         {
             try
             {
+                techLevel = techLevels[mainForm.TechLevel];
+
                 if (mainForm.TechLevel >= 0)
                 {
                     techMulti = techMultipliers[mainForm.TechLevel];
@@ -871,8 +873,8 @@ namespace FactoryProfitCalculator
             cFactoryMax = 0;
 
             try
-            { 
-                if (factoryTechLevel == techLevels[0] || factoryTechLevel == techLevels[1])
+            {
+                if (techLevel == techLevels[0] || techLevel == techLevels[1])
                 {
                     if (unitType == str_mechUnitType || unitType == str_asfUnitType)
                     {
@@ -890,7 +892,7 @@ namespace FactoryProfitCalculator
                         cFactoryMax = retroSmallCraftDrop_CFactoryMax;
                     }
                 }
-                else if (factoryTechLevel == techLevels[2])
+                else if (techLevel == techLevels[2])
                 {
                     if (unitType == str_mechUnitType || unitType == str_asfUnitType)
                     {
@@ -908,7 +910,7 @@ namespace FactoryProfitCalculator
                         cFactoryMax = introSmallCraftDrop_CFactoryMax;
                     }
                 }
-                else if (factoryTechLevel == techLevels[3])
+                else if (techLevel == techLevels[3])
                 {
                     if (unitType == str_mechUnitType || unitType == str_asfUnitType)
                     {
@@ -931,7 +933,7 @@ namespace FactoryProfitCalculator
                         cFactoryMax = stdBattleArm_CFactoryMax;
                     }
                 }
-                else if (factoryTechLevel == techLevels[4])
+                else if (techLevel == techLevels[4])
                 {
                     if (unitType == str_mechUnitType || unitType == str_asfUnitType)
                     {
@@ -954,7 +956,7 @@ namespace FactoryProfitCalculator
                         cFactoryMax = advBattleArm_CFactoryMax;
                     }
                 }
-                else if (factoryTechLevel == techLevels[5])
+                else if (techLevel == techLevels[5])
                 {
                     if (unitType == str_mechUnitType || unitType == str_asfUnitType)
                     {
@@ -1113,8 +1115,8 @@ namespace FactoryProfitCalculator
         {
             try
             {
-                factoryTechLevel = techLevels[mainForm.FactoryType];
-                techLevel = techLevels[mainForm.TechLevel];
+                //factoryTechLevel = techLevels[mainForm.FactoryType];
+                //techLevel = techLevels[mainForm.TechLevel];
                 omni = mainForm.Omni;
 
                 int smallCraftMaxB = 0;
@@ -1203,11 +1205,11 @@ namespace FactoryProfitCalculator
                 }
                 if (cFactoryCount > smallCraftMaxC)
                 {
-                    cOutput = smallCraftMaxC * cFactoryOutput + (cFactBonus * cFactoryOutput * 0.5);
+                    cOutput = (smallCraftMaxC * cFactoryOutput) + (cFactBonus * cFactoryOutput * 0.5);
                 }
                 else
                 {
-                    cOutput = cFactoryCount * cFactoryOutput + (cFactBonus * cFactoryOutput * 0.5);
+                    cOutput = (cFactoryCount * cFactoryOutput) + (cFactBonus * cFactoryOutput * 0.5);
                 }
 
                 if (techLevel == str_primTechLvl)
