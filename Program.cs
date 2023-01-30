@@ -630,41 +630,48 @@ namespace FactoryProfitCalculator
         {
             try
             {
-                string fileName = mainForm.Variant;
-                string fullFileName = str_saveFileFolder + "\\" + fileName + ".txt";
-                DialogResult saveFile = DialogResult.Yes;
+                if(mainForm.Variant != "")
+                { 
+                    string fileName = mainForm.Variant;
+                    string fullFileName = str_saveFileFolder + "\\" + fileName + ".txt";
+                    DialogResult saveFile = DialogResult.Yes;
 
-                if (File.Exists(fullFileName))
-                {
-                    saveFile = MessageBox.Show("File exists, Overwrite?", "File Exists", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                }
-
-                if (saveFile == DialogResult.Yes)
-                {
-                    using (StreamWriter wt = new(fullFileName))
+                    if (File.Exists(fullFileName))
                     {
-                        wt.WriteLine(mainForm.Variant);
-                        wt.WriteLine(mainForm.Tonnage);
-                        wt.WriteLine(mainForm.UnitType);
-                        wt.WriteLine(mainForm.FactoryType);
-                        wt.WriteLine(mainForm.Cost);
-                        wt.WriteLine(mainForm.TechLevel);
-                        wt.WriteLine(mainForm.HandMake);
-                        wt.WriteLine(mainForm.BFactory);
-                        wt.WriteLine(mainForm.CFactory);
-                        wt.WriteLine(mainForm.Refit);
-                        wt.WriteLine(mainForm.RefitTechLevel);
-                        wt.WriteLine(mainForm.RefitType);
-                        wt.WriteLine(mainForm.Omni);
-                        wt.WriteLine(mainForm.SellTechLevel);
+                        saveFile = MessageBox.Show("File exists, Overwrite?", "File Exists", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    }
 
-                        wt.Close();
+                    if (saveFile == DialogResult.Yes)
+                    {
+                        using (StreamWriter wt = new(fullFileName))
+                        {
+                            wt.WriteLine(mainForm.Variant);
+                            wt.WriteLine(mainForm.Tonnage);
+                            wt.WriteLine(mainForm.UnitType);
+                            wt.WriteLine(mainForm.FactoryType);
+                            wt.WriteLine(mainForm.Cost);
+                            wt.WriteLine(mainForm.TechLevel);
+                            wt.WriteLine(mainForm.HandMake);
+                            wt.WriteLine(mainForm.BFactory);
+                            wt.WriteLine(mainForm.CFactory);
+                            wt.WriteLine(mainForm.Refit);
+                            wt.WriteLine(mainForm.RefitTechLevel);
+                            wt.WriteLine(mainForm.RefitType);
+                            wt.WriteLine(mainForm.Omni);
+                            wt.WriteLine(mainForm.SellTechLevel);
+
+                            wt.Close();
+                        }
+                    }
+                    else
+                    {
+                        saveFile = DialogResult.No;
+                        MessageBox.Show("File not saved.", "File Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else
                 {
-                    saveFile = DialogResult.No;
-                    MessageBox.Show("File not saved.", "File Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Missing File Name.", "File Not Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -1259,7 +1266,7 @@ namespace FactoryProfitCalculator
                 {
                     if (mainForm.FactoryType == 1)
                     {
-                        // Feeder production + 50% for producing primitive tech on a retrotech line.
+                        // Feeder production + 50% for producing civilian/primitive tech on a retrotech line.
                         bOutput *= 1.5;
                         cOutput *= 1.5;
                     }
@@ -1268,7 +1275,7 @@ namespace FactoryProfitCalculator
                 // Get our base production.
                 if(handmake)
                 { 
-                    productionRate = (bOutput + cOutput) / tonnage;
+                    productionRate = (10 + bOutput + cOutput) / tonnage;
                 }
                 else
                 {

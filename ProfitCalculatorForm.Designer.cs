@@ -733,9 +733,9 @@
             this.lbl_variantName.AutoSize = true;
             this.lbl_variantName.Location = new System.Drawing.Point(3, 6);
             this.lbl_variantName.Name = "lbl_variantName";
-            this.lbl_variantName.Size = new System.Drawing.Size(46, 15);
+            this.lbl_variantName.Size = new System.Drawing.Size(28, 15);
             this.lbl_variantName.TabIndex = 3;
-            this.lbl_variantName.Text = "Variant:";
+            this.lbl_variantName.Text = "File:";
             // 
             // pan_factoryType
             // 
