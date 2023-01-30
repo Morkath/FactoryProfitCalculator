@@ -242,7 +242,7 @@ namespace FactoryProfitCalculator
 
         public static ProfitCalculatorForm mainForm;
 
-        private const string str_versionNum = "1.0";
+        private const string str_versionNum = "1.1";
 
         [STAThread]
         public static void Main()
