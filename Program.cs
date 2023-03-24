@@ -1395,10 +1395,57 @@ namespace FactoryProfitCalculator
                 }
                 else if (unitType == str_baUnitType) // Battle Armor 
                 {
-                    monthlySell = productionRate * totalCost;
-                }
+                    double tempSellMulti = 0;
+                    double tempBA_Cost = 0;
 
-                mainForm.MonthlySell = Math.Round(monthlySell, 3).ToString();
+                    if (tonnage < 1)
+                    {
+                        tempBA_Cost = lightBA_cost;
+                    }
+                    else if (tonnage == 1)
+                    {
+                        tempBA_Cost = mediumBA_cost;
+                    }
+                    else if (tonnage == 1.5)
+                    {
+                        tempBA_Cost = heavyBA_cost;
+                    }
+                    else if (tonnage == 2)
+                    {
+                        tempBA_Cost = assaultBA_cost;
+                    }
+
+                    if (mainForm.SellTechLevel == 0) // Prim Tech
+                    {
+                        tempSellMulti = techMultipliers[3] / techMultipliers[0];
+                        monthlySell = productionRate * (tempBA_Cost / tempSellMulti);
+                    }
+                    else if (mainForm.SellTechLevel == 1) // Retro Tech
+                    {
+                        tempSellMulti = techMultipliers[3] / techMultipliers[1];
+                        monthlySell = productionRate * (tempBA_Cost / tempSellMulti);
+                    }
+                    else if (mainForm.SellTechLevel == 2) // Intro Tech
+                    {
+                        tempSellMulti = techMultipliers[3] / techMultipliers[2];
+                        monthlySell = productionRate * (tempBA_Cost / tempSellMulti);
+                    }
+                    else if (mainForm.SellTechLevel == 3) // Std Tech
+                    {
+                        monthlySell = productionRate * tempBA_Cost; // Std is our base level, so we don't need to multiply for it.
+                    }
+                    else if (mainForm.SellTechLevel == 4) // Adv Tech
+                    {
+                        tempSellMulti = sellTechMulti / 100;
+                        monthlySell = productionRate * (tempBA_Cost + (tempBA_Cost * tempSellMulti));
+                    }
+                    else if (mainForm.SellTechLevel == 5) // Exp/Clan Tech
+                    {
+                        tempSellMulti = sellTechMulti / 100;
+                        monthlySell = productionRate * (tempBA_Cost + (tempBA_Cost * tempSellMulti));
+                    }                    
+                }
+                    mainForm.MonthlySell = Math.Round(monthlySell, 3).ToString();
             }
             catch (Exception ex)
             {
